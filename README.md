@@ -1,1 +1,1 @@
-# https://github.com/hatatori/planetas.github.io
+# https://hatatori.github.io/planetas.github.io

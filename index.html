@@ -1,228 +1,657 @@
-<!-- planetas -->
-
 <style>
+
+@font-face {
+  font-family: ubuntu;
+  src: url(fonts/Ubuntu-Regular.ttf);
+}
+
 *{
+	font-family: ubuntu;
+	outline: none;
 	padding: 0;
 	margin: 0;
-	overflow:hidden;
-
 }
+
 body{
-	background-color: black;
+	background-color: #393634;
+	color: #6B6461;
+	font-size: 17;
+	outline: none;
 }
 
-.bloco,.planeta{
+a{color: #ddd}
+
+.c1{color:orangered;}
+.c2{color:#80c0f0;}
+.c3{color:#99cc00;}
+.c4{color:yellow}
+.c6{color: #63636b;display: block;padding: 10}
+.comentarios{color:rgba(255,255,255,0.5);}
+
+#geral{
+	margin: 30 auto;
+	padding: 20;
+	width: 1200;
+	/*box-shadow: 0px 0px 10px #111;*/
+	/*background: #202020;*/
+}
+
+#geral > div{
+	background-color: #202020;
+	padding: 10;
+	margin: 10;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	transition: 0.2s;
+}
+
+.code{padding: 10; margin: 30;   
+	/*background: #312E2C*/
+}
+
+.amostra{
+	/*background-color: #111;*/
+	padding: 10;
+	
+}
+
+.tolltip{display: inline-block;position: relative;}
+
+.tolltip p{
+	text-align: center;
+	position: absolute;
+	top: -23;
+	right:0;
+	left: 0;
+	width: 100;
+	margin:auto;
+	font-size: 12;
+	opacity: 0.0;
+	transition: 0.2s;
+	padding: 5;
+	border:none;
+	background-color: #3F3B37;color:white;
+}
+.tolltip:hover p{
+	opacity: 1;
+	transition: 0.2s;
+}
+
+.tolltip:active p{opacity: 0; transition: 0.05s;}
+
+button{padding: 10;border:none;background-color: #3F3B37;color:white;}
+
+.bt{padding: 10;border:none;background-color: #3F3B37;color:white;}
+
+
+/*.exemplos{background-color: #312E2C; margin:30 0; ;padding: 10;text-align: center;}*/
+.exemplos{
+	display: block;
+	margin: 10;
+
+}
+
+
+/*efeitos*/
+
+#cortarTamanho{
+	margin: auto;
+	width: 500;
+	height: 342;
+	background:url(imgs/coruja4.jpg);
+	position: relative;
+	/*background-size: 100%;*/
+	overflow: hidden;
+}
+
+#cortarTamanho div:nth-child(1){
+	width: 200;
+	height: 90;
+	left: 100;
+	top: 100;
+	background-color: rgba(0,0,0,0.5);
+	border:2px solid red;
+	position: absolute;
+}
+
+#cortarTamanho div:hover{cursor: grab}
+
+
+
+#cortarTamanho div:nth-child(1)::before{
+	content: '';
+	width: 10;
+	height: 10;
+	border-radius: 10px;
+	background: yellow;
+	position: absolute;
+	left: -5;
+	top: -5
+}
+
+#cortarTamanho div p:nth-child(1){position: absolute;left:-3;top: 40;transform: rotate(90deg);width: 30;color:white;}
+#cortarTamanho div p:nth-child(2){position: absolute;left:80;top: 0;width: 30;color:white;}
+
+#cortarTamanho div p:nth-child(3){
+	color: white;
+	margin: auto;
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	margin: auto;
-	width: 100%;
-	z-index: 200;
+	width: 100;
+	height: 20;
+
 }
 
-#sol{
+.flip-horizontal{transition: 0.5s}
+.flip-horizontal:active{ transform: scaleX(-1); transition: 0.5s; }
+
+.flip-vertical{transition: 0.5s}
+.flip-vertical:active{ transform: scaleY(-1); transition: 0.5s; }
+
+.cscale{width: 300}
+.cscale img{width: 300; transition:0.5s;}
+.cscale:active img{width: 200;transition: 0.5s}
+
+hr{border:none;border-bottom:1px solid #555;margin: 50;overflow:hidden;height: 1px}
+
+.comments{margin: 10;font-size: 13;overflow:0 }
+
+.comments + *{
+
+	max-height: 0;
+	transition: 0.2s;
+	overflow:hidden;
+	margin: 10;
+	font-size: 15;
+	color:#908782
+
+
+}
+
+.comments:checked + *{
+	transition: 0.2s;
+	overflow: hidden;
+	margin: 10;
+	max-height: 1000%;
+	max-height: 100%;
+	padding: 20 50;
+}
+
+.comments::before{
+	content: 'Comentários';
+	background-color: #222;
+	padding: 10;
+	color: #777;
+}
+
+.comments:active::before{background-color: white;transition: 0.2s}
+#seqf *{padding: 0;margin: 0}
+
+#seqf{width: 500;height: 280;overflow:hidden;position: relative;}
+#seqf > img{
+	position: absolute;
+	width: auto;
+	height: auto;
+	top: 0;
+	left: 0;
+}
+
+.audio{
+	display: inline-flex;
+	overflow: hidden;
+	position: relative;
+	overflow: hidden;
+	height: 50;
+}
+
+.audio button{
+	width: 50;
+	height:40;
+	padding: 0;
+
+}
+
+.audio input[type='radio']{
 	width: 50;
 	height: 50;
-	background-image: radial-gradient(circle, yellow 30%, orange);
-	border-radius: 100%;
-	box-shadow: 0px 0px 100px orangered;
-}
-
-
-
-#canvas{
-	/*width: 100%;*/
-	/*height: 100%;*/
-	/*display: fixed;
-	top: 0;
-	left: 0;*/
-	position: absolute;
-	z-index: 1;
-}
-
-.orbita{
-	position: absolute;
 	position: absolute;
 	top: 0;
-	bottom: 0;
 	left: 0;
-	right: 0;
-	margin: auto;
-	z-index: 10;
-	border-radius: 100%;
-	border: solid 1px rgba(255,255,255,0.0);
+	opacity: 0;
+	overflow: hidden;
+}
+
+.audio input[type='radio'] + *{
+	width: 0;
+	overflow: hidden;
 	transition: 0.5s;
-
+	height: 40;
 }
 
-#mer{ width: 100; height: 100; z-index: 100;}
-#ven{ width: 200; height: 200; z-index: 99;}
-#ter{ width: 300; height: 300; z-index: 98;}
-#mar{ width: 400; height: 400; z-index: 97;}
-#jup{ width: 500; height: 500; z-index: 96;}
-#sat{ width: 600; height: 600; z-index: 95;}
-#ura{ width: 700; height: 700; z-index: 94;}
-#net{ width: 800; height: 800; z-index: 93;}
-#plu{ width: 900; height: 900; z-index: 92;}
-
-.orbita:hover{border: solid 1px rgba(255,255,255,0.5);transition: 0.5s;}
-
-#info{
-	position: absolute;
-	top: 10;
-	left: 10;
-	z-index: 101;
-	background-color: black;
-	font-family: monospace;
-	color: white;
-	padding: 10;
-	display: none;
+.audio input[type='radio']:checked + *{
+	opacity: 1;
+	width: 300;
+	transition: 0.5s;
+	height: 40;
 }
+
+
+/*começo range*/
+
+
+/*fim range*/
 
 </style>
-<meta charset="utf-8">
-<div id="info">mercurio</div>
 
-<div id="bloco">
-	<div class="planeta" id="sol"></div>
-	<div class="planeta" id="mercurio"></div>
-	<div class="planeta" id="venus"></div>
-	<div class="planeta" id="terra"></div>
-	<div class="planeta" id="marte"></div>
-	<div class="planeta" id="jupter"></div>
-	<div class="planeta" id="saturno"></div>
-	<div class="planeta" id="urano"></div>
-	<div class="planeta" id="netuno"></div>
-	<div class="planeta" id="plutao"></div>
-</div>
+<pre id='com' class="comentarios" contenteditable spellcheck="false" style="display: none">
+	recorte tempo
 
-<div class="orbita" id="mer" val="Mercúrio"></div>
-<div class="orbita" id="ven" val="Vênus"></div>
-<div class="orbita" id="ter" val="Terra"></div>
-<div class="orbita" id="mar" val="Marte"></div>
-<div class="orbita" id="jup" val="Júpiter"></div>
-<div class="orbita" id="sat" val="Saturno"></div>
-<div class="orbita" id="ura" val="Urano"></div>
-<div class="orbita" id="net" val="Netuno"></div>
-<div class="orbita" id="plu" val="Plutao"></div>
+	ffmpeg -i [input] -ss 00:41 -t 00:10 -async 1 [outputfile]
 
-<canvas id="canvas"></canvas>
+	mater qualidade
 
-<script>
-	function gira(div,tamanho,raio,c){
+	para mp4 ultiliza o -crf
 
-		div.w = raio;
-		div.h = raio;
-		// div.style.background="url("+div.id+") center center"
-		div.style.backgroundImage="url("+div.id+".jpg)"
-		div.style.backgroundSize="100% 100%"
-		div.style.borderRadius="100%"
+	ffmpeg -i [input] -crf 10 [outputfile]
+
+	compilação de qualidade o quanto maior mais maneiro
+	para mp4 ultiliza o -avi
+
+	ffmpeg -i [input] -q 23 [outputfile]
+
+	qualidade e tempo
+
+	ffmpeg -i [input] -ss 00:41 -t 00:10 -async 1 -crf 23 out3.mkv
+
+	qualidade de audio
+
+	ffmpeg -i [input] -b:a 320k [outputfile]
+
+	to target the video
+
+	ffmpeg -i [input] -b:1000k [outputfile]
+
+	aumenta diminui volume
+
+	ffmpeg -i [input] -va "volume=2" [outputfile]
+	ffmpeg -i [input] -va "channelmap=0-0|0-1" [outputfile]
+
+	cotar
+
+	ffmpeg -i [input] -vf "crop=w=640:h=480:x=100:y=100" [outputfile]
+
+	tamanho scale
+
+	ffmpeg -i [input] -vf "scale=w=200:h=-1" [outputfile]	
+	ffmpeg -i out3.mkv -vf "scale=w=200:h=-1" outout.mp4
+
+
+	rotacionar
+
+	1 = 90 graus
+	ffmpeg -i out3.mkv -vf "transpose=1" rotate.mp4
+
+	// pi em radiano
+	ffmpeg -i [input] -vf "rotate=30*PI/180" [output]
+
+
+
+</pre>
+
+<div id="geral">
+
+	<div>
+		<p>Conversão simples</p>
+
+		<div class="code">
+			ffmpeg -i [input] [output]
+		</div>
+		<input class="comments" type="checkbox">
+		<pre>
+			[input] = É o arquivo que você quer converter, exemplo:  video1.avi<br>
+			[output] = Nome do arquivo que será criado, exemplo:  video2.mp4<br>
+		</pre>
+	</div>
+
+	<div>
+		Recorte de tempo 
+
+		<div class="code">
+			ffmpeg -i [input] -ss 5 -t 10 [outputfile]
+		</div>
+		<input class="comments" type="checkbox">
+		<pre>
+			Copia 10s a partir do segundo 5
+
+			O formato do tempo pode ser retirado assim => 00:00:00.000
+
+			horas : minutos : segundos . milisegundos
+		</pre>
+		
+	</div>
+
+	<div>
+		mp4 qualidade [ 0 = ótimo , 20 padrão , 100 = ruim]
+
+		<div class="code">
+			ffmpeg -i [input] -crf 16 [outputfile]
+		</div>
+
+		<div class="exemplos">
+			<a href='videos/render15.mp4' target="_blank"><button>15 - 6.03mb</button></a> 
+			<a href='videos/render20.mp4' target="_blank"><button>20 - 4.83 mb</button></a>
+			<a href='videos/render30.mp4' target="_blank"><button>30 - 1.41 mb</button></a>
+			<a href='videos/render100.mp4' target="_blank"><button>100 - 327 kb</button></a>
+		</div>
+		
+
+
+
+	</div>
+
+	<div>
+		Qualidade de áudio [ 320k , 256k , 128k ]
+
+		<div class="code">
+			ffmpeg -i [input] -b:a 320k [outputfile]
+		</div>
+
+
 
 		
 
-		div.c = c
+		<div class="exemplos">
+			<div class="audio" title="8.07 mb">
+				<button>320</button>
+				<input type="radio" name='a'>
+				<audio src='audios/red320.mp3' controls=""></audio>
+			</div>
+			<div class="audio" title="6.53 mb">
+				<button>256</button>
+				<input type="radio" name='a'>
+				<audio src='audios/red256.mp3' controls=""></audio>
+			</div>
+			<div class="audio" title="3.31 mb">
+				<button>128</button>
+				<input type="radio" name='a'>
+				<audio src='audios/red128.mp3' controls=""></audio>
+			</div>
+			<div class="audio">
+				<button>50</button title="1.29 mb">
+					<input type="radio" name='a'>
+					<audio src='audios/red50.mp3' controls=""></audio>
+				</div>
+			</div>
 
-		div.style.width = tamanho
-		div.style.height = tamanho
+		</div>
 
-		if(div.id == "saturno"){
-			div.style.width = tamanho*1.8
-			div.style.height = tamanho
-		}
+		<div>
+			Vídeo bitrate
+			<div class="code">
+				ffmpeg -i [input] -b:1000k [outputfile]
+			</div>
+		</div>
 
-		div.style.left = div.w
-		div.style.top = div.h
-		div.a = 0
-		div.angX = 0
-		div.angY = 0
-
-		try{
-			
-		}catch(err){clearInterval(s)}
-
-		s = setInterval(function(){
-			
-			div.style.left = div.angX
-			div.style.top = div.angY
-			
-			div.angX = Math.sin(div.a)*div.w
-			div.angY = Math.cos(div.a)*div.h
-			
-			div.a += 5/10**c
+		<div>
+			Volume + ou - / Canais
+			<div class="code">
+				ffmpeg -i [input] -va "volume=2" [outputfile]<br><br>
+				ffmpeg -i [input] -va "channelmap=0-0|0-1" [outputfile]
+			</div>
+			<div class="exemplos">
+				<div class="tolltip"><p>Volume 1</p><img src="imgs/vol1.png"></div>
+				<div class="tolltip"><p>Volume 2</p><img src="imgs/vol2.png"></div>
+			</div>
+		</div>
 
 
-		},0)
+
+		<div>
+			Cortar [w:h:x:y] 
+			<div class="code">
+				ffmpeg -i [input] -vf "crop=w=100:h=90:x=100:y=100" [outputfile]<br><br>
+				ffmpeg -i [input] -vf "crop=200:90:100:100" [outputfile]
+			</div>
+
+			<hr>
+			<div class="exemplos">
+				<div id="cortarTamanho">
+					<div>
+						<p>90</p>
+						<p>200</p>
+						<p id="coordenadas">( 100 , 100 )</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div>
+			Tamanho [w:h] [ -1 para mater proporção]
+			<div class="code">
+				in_w = largura<br>
+				in_h = altura<br><br>
+
+				ffmpeg -i [input] -vf "scale=200:300" [output]<br>
+				ffmpeg -i [input] -vf "scale=200:-1" [output]<br>
+
+			</div>
+
+			<hr>		
+
+			<div class="cscale exemplos tolltip"><p>click</p><img src='imgs/coruja5.jpg' width="500">
+			</div>
+
+		</div>
+
+		<div>
+			Rotação 
+			<div class="code">
+				ffmpeg -i [input] -vf "transpose=1" [output]<Br><br>
+				ffmpeg -i [input] -vf "rotate=30*-1*PI/180" [output]
+			</div>
+			<hr>
+			<div>
+				<div class="exemplos">
+					<input type="range" id='ran' min=0 max=360 value=30><br><br>
+					<span>ffmpeg -i [input] -vf "rotate=<span id="ang">30</span>*-1*PI/180" [output]</span><br><br>
+					<img style="transition: 0.5s;" id=imrot src='imgs/coruja3.jpg' width="200">
+				</div>
+			</div>
+		</div>
+
+		<div>
+			Flip horizontal
+			<div class="code">ffmpeg -i [input] -vf vflip [output]</div>
+			<div class="exemplos">
+				<div class="tolltip flip-horizontal" style="width: 200"><p>Click</p><img src='imgs/coruja1.jpg' width="200"></div><br>
+			</div>
+			<hr>
+			Flip vertical 
+			<div class="code">ffmpeg -i [input] -vf vflip [output]</div>
+			<div class="exemplos">
+				<div class="tolltip flip-vertical" style="width: 200"><p>Click</p><img src='imgs/coruja2.jpg' width="200"></div><br>
+			</div>
+		</div>
+
+		<div>
+			Juntar vídeos em um só
+			<div class="code">
+				ffmpeg -f concat -i [input_list] [output]
+			</div>
+			<pre>
+				lista.txt
+
+				file 'video1.mp4'
+				file 'video2.mp4'
+				file 'video3.mp4'
+				...
+			</pre>
+
+			<input type="checkbox" class="comments">
+			<pre>
+				Você pode criar uma lista txt colocando o comando:
+
+				(for %i in (*.mp4) do @echo file '%i' ) > lista.txt
+
+				Onde tem *.mp4 podes substituir pelo nomeDaPasta/*.mp4
+			</pre>
+		</div>
+
+		<div>
+			Convertendo pasta
+			<div class="code">
+				(for %i in (*.mp4) do ffmpeg -i %i %i.mp3 )
+			</div>
+		</div>
+
+		<div>
+			Transformar Fotos em vídeo [ %d = número | input em png é melhor ]
+			<div class="code">
+				ffmpeg -i [output] [%d input]
+			</div>
+			Transformar vídeo em sequência fotos
+			<div class="code">
+				ffmpeg -i [%d input] [output]
+			</div>
+
+			<div class="exemplos">
+				<input type="range" id="seqft" min=0 max=180 value=0 style="width: 300"><br><br>
+				<div id="seqf">
+					<img id=matriximg src="imgs/matrixirelia2.jpg">
+				</div>
+			</div>
+
+			<input type="checkbox" class="comments">
+			<div>
+				<a href="imgs/matrixirelia2.jpg" target="blank">link da foto</a><br><Br>
+				Pega todas as fotos de uma pasta com os nomes sequenciados 1,2,3... e transforma em um vídeo único: 
+			</div>
+
+
+
+			<div class="code">
+				ffmpeg -framerate 60 -i [%d input] [output]
+			</div>
+		</div>
+
+
+		<div>
+			Copia frame do tempo [ output %d ]
+			<div class="code">
+				ffmpeg -i [input] -ss 00:00:37 -vframes 3 [%d output]
+			</div>
+
+
+
+		</div>
+
+
+
+		<!-- (for %i in (pasta/*.mp4) do ffmpeg -i pasta/%i %i.mp3 ) -->
+		<!-- (for %i in (pasta/*.mp4) do ffmpeg -i pasta/%i %i.mp3 ) -->
+
+	</div>
+
+
+	<script>
+
+	// ok.innerHTML = com.innerText.replace(/\n/g,"<br>")
+
+	code = document.getElementsByClassName("code")
+
+	for(i=0;i<code.length;i++){
+		render(code[i])
+	}
+	
+	function render(val){
+		k = /\w+\.(avi|jpg|png|webm|flv|mp4|bmp|mpg)/g
+		k = /\[.+?\]/g
+		k2 = /\".+(\d+)?\"/g
+		k3 = / -\w+|concat|\%d/g
+		k4 = /\/\/.*/g
+		k5 = /\"(.+)?\"/g
+		k6 = /\/\/.+/g
+
+		// k2 = /\d+:\d+\d:\d+.\d+|\d+\:(\d+|-)\d+/g
+
+
+
+		val.innerHTML = val.innerText.replace(k,"<span class=c1>$&</span>").replace(k2,"<span class=c2>$&</span>").replace(k3,"<span class=c3>$&</span>").replace(k5,"<span class=c5>$&</span>").replace(k6,"<span class=c6>$&</span>").replace(/\n/g,"<br>")
+
 	}
 
-
-	var ctx = canvas.getContext("2d");
-	
-	canvas.width=window.innerWidth
-	canvas.height=window.innerHeight
-
-
-	var rx,ry,r,g,b
-
-	for(i=0;i<2000;i++){
-
-		rx = Math.floor(Math.random()*window.innerWidth)
-		ry = Math.floor(Math.random()*window.innerHeight)
-
-	//cor
-	r = Math.floor(Math.random()*255)
-	g = Math.floor(Math.random()*255)
-	b = Math.floor(Math.random()*255)
-	alfa = Math.random()*1
-
-	// ctx.strokeStyle = "rgb("+r+", "+g+", "+b+")";
-	ctx.fillStyle = "rgba("+r+","+g+","+b+","+alfa+")";
-	ctx.fillRect(rx, ry,1, 1);
-	ctx.stroke();
-}
-
-
-
-gira(mercurio,10,100,3.0)
-gira(venus,20,200,3.1)
-gira(terra,20,300,3.2)
-gira(marte,20,400,3.3)
-gira(jupter,60,500,3.4)
-gira(saturno,70,600,3.5)
-gira(urano,60,700,3.6)
-gira(netuno,50,800,3.7)
-gira(plutao,20,900,3.8)
-
-
-
-drag = false;
-
-window.onmousedown=function(){drag=true}
-window.onmouseup=function(){drag=false}
-
-window.onmousemove=function(e){
-
-	x = e.clientX
-	y = e.clientY
-	
-	if(e.target.getAttribute("class") == "orbita"){
-		info.style.display='block'
-		info.innerHTML = e.target.getAttribute("val")
-
-		info.style.top = y+20
-		info.style.left = x+20
-	}else{
-		info.style.display='none'
-	}
-}
-
-function rep(z1,z2,z3){
-	a = [z1,z1+"px",z1+"px"]
-	k = "scale(#) translateX(#) translateX(#)"
-	k = k.replace(/#/g,function(e){return a.pop()})
-	document.body.style.transform = k
-}
 
 </script>
 
+<script src='drag.js'></script>
+
+<script>
+	//efeitos
+	window.onmousemove=function(e){
+
+		cx = parseInt(cortarTamanho.children[0].style.left)
+		cy = parseInt(cortarTamanho.children[0].style.top)
+
+		
+		coordenadas.innerHTML = "( "+cx+" , "+cy+" )"
+	}
+
+	ran.onmousemove=function(){
+		
+		ang.innerHTML = this.value
+
+		imrot.style.transform = "rotate("+(this.value*-1)+"deg)"
+
+	}
+
+	
+	seqft.onmousemove=function(){
+		v = parseInt(this.value)
+		if(v==180) v=179
+
+			x = v%6
+		y = parseInt(v/6)
+
+
+		console.log(x+" - "+y)
+		
+		matriximg.style.left = x*500*-1
+		matriximg.style.top = y*280*-1
+	}
+
+	audio = document.getElementsByClassName("audio")
+
+	for( i = 0 ; i < audio.length ; i++){
+
+		audio[i].onclick=function(e){
+
+			
+			
+
+			stopAll()
+
+			this.querySelector('audio').play()	
+			this.querySelector('audio').currentTime = tempo
+		}
+	}
+
+	function stopAll(){
+
+		for( i = 0 ; i < audio.length ; i++){
+			aud = audio[i].querySelector('audio')
+			if(!aud.paused)
+				tempo = aud.currentTime
+			
+			
+			audio[i].querySelector('audio').pause()
+		}
+	}
+	
+
+
+	
+</script>
